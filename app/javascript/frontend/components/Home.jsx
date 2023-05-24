@@ -1,7 +1,17 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Link } from "react-router-dom";
 
-export default () => (
+export default function Home() {
+  useEffect(()=>{
+    fetch('http://localhost:3000/files/index',
+    {headers:{'Content-Type': 'application/json','Access-Control-Allow-Origin': '*'},
+    method:'GET'})
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+    })
+  })
+  return(
   <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
     <div className="jumbotron jumbotron-fluid bg-transparent">
       <div className="container secondary-color">
@@ -20,4 +30,4 @@ export default () => (
       </div>
     </div>
   </div>
-);
+);};
