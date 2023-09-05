@@ -76,3 +76,5 @@ end
 gem "rack-cors", "~> 2.0"
 
 gem "faraday", "~> 2.7"
+
+gem 'csv_json_converter'

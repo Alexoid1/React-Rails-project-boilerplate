@@ -1,7 +1,7 @@
 require 'faraday'
 require 'json'
 require 'csv'
-
+require 'csv_json_converter'
 
 class FilesController < ApplicationController
   
@@ -51,10 +51,7 @@ class FilesController < ApplicationController
       if response.status == 200
         data = response.body
         
-
-        for_csv = CSV.parse(data, headers: true, header_converters: :symbol)    
-
-        arr_to_json = for_csv.map(&:to_h).to_json
+        arr_to_json = CsvJsonConverter.to_json(data)
         
         arr=JSON.parse(arr_to_json)
         arr.each do |row|
